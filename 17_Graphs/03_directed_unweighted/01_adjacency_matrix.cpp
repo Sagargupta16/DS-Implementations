@@ -6,7 +6,6 @@ class graph{
 public:
     void addEdge(int a,int b,int A[],int n){
         A[a*n+b]=1;
-        A[b*n+a]=1;
     }
     void printGraph(int A[],int n){
         for(int i=1;i<n;i++){
@@ -59,9 +58,9 @@ int main(){
     int A[n*n]={0};
     graph g;
     g.addEdge(1,2,A,n);
-    g.addEdge(1,3,A,n);
     g.addEdge(1,4,A,n);
     g.addEdge(2,3,A,n);
+    g.addEdge(3,1,A,n);
     g.addEdge(3,4,A,n);
     g.addEdge(3,5,A,n);
     g.addEdge(4,5,A,n);
@@ -70,10 +69,10 @@ int main(){
 
     g.printGraph(A,n);
 
-    g.BFS(5,A,n);
+    g.BFS(1,A,n);
 
     int B[n]={0};
-    g.DFS(5,B,A,n);cout<<endl;
+    g.DFS(1,B,A,n);cout<<endl;
 
     return 0;
 }

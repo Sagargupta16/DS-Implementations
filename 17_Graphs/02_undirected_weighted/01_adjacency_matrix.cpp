@@ -4,16 +4,16 @@ using namespace std;
 
 class graph{
 public:
-    void addEdge(int a,int b,int A[],int n){
-        A[a*n+b]=1;
-        A[b*n+a]=1;
+    void addEdge(int a,int b,int w,int A[],int n){
+        A[a*n+b]=w;
+        A[b*n+a]=w;
     }
     void printGraph(int A[],int n){
         for(int i=1;i<n;i++){
             cout<<i<<"-> ";
             for(int j=0;j<n;j++){
-                if(A[i*n+j]==1){
-                    cout<<j<<" ";
+                if(A[i*n+j]!=0){
+                    cout<<j<<"("<<A[i*n+j]<<") ";
                 }
             }
             cout<<endl;
@@ -31,7 +31,7 @@ public:
             u = q.front();
             q.pop();
             for(int j=0;j<n;j++){
-                if(A[u*n+j]==1 && B[j]==0){
+                if(A[u*n+j]!=0 && B[j]==0){
                     cout<<j<<" ";
                     B[j]=1;
                     q.push(j);
@@ -47,7 +47,7 @@ public:
         cout<<i<<" ";
         B[i]=1;
         for(int j=0;j<n;j++){
-            if(A[i*n+j]==1){
+            if(A[i*n+j]!=0){
                 DFS(j,B,A,n);
             }
         }
@@ -58,15 +58,15 @@ int main(){
     int n=8;
     int A[n*n]={0};
     graph g;
-    g.addEdge(1,2,A,n);
-    g.addEdge(1,3,A,n);
-    g.addEdge(1,4,A,n);
-    g.addEdge(2,3,A,n);
-    g.addEdge(3,4,A,n);
-    g.addEdge(3,5,A,n);
-    g.addEdge(4,5,A,n);
-    g.addEdge(5,6,A,n);
-    g.addEdge(5,7,A,n);
+    g.addEdge(1,2,6,A,n);
+    g.addEdge(1,3,3,A,n);
+    g.addEdge(1,4,4,A,n);
+    g.addEdge(2,3,9,A,n);
+    g.addEdge(3,4,12,A,n);
+    g.addEdge(3,5,15,A,n);
+    g.addEdge(4,5,76,A,n);
+    g.addEdge(5,6,1,A,n);
+    g.addEdge(5,7,6,A,n);
 
     g.printGraph(A,n);
 
