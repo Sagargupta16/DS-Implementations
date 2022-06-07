@@ -52,6 +52,10 @@ public:
             }
         }
     }
+    void dfst(int i,int A[],int n){
+        int B[n]={0};
+        DFS(i,B,A,n);
+    }
 };
 
 int main(){
@@ -67,13 +71,14 @@ int main(){
     g.addEdge(4,5,A,n);
     g.addEdge(5,6,A,n);
     g.addEdge(5,7,A,n);
+    g.addEdge(6,4,A,n);
+    
 
     g.printGraph(A,n);
 
     g.BFS(5,A,n);
 
-    int B[n]={0};
-    g.DFS(5,B,A,n);cout<<endl;
+    g.dfst(5,A,n);cout<<endl;
 
     return 0;
 }

@@ -69,10 +69,10 @@ int main(){
 
     g.printGraph(A,n);
 
-    g.BFS(1,A,n);
+    g.BFS(3,A,n);
 
     int B[n]={0};
-    g.DFS(1,B,A,n);cout<<endl;
+    g.DFS(3,B,A,n);cout<<endl;
 
     return 0;
 }

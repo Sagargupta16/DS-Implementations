@@ -1,26 +1,27 @@
 #include<iostream>
+#include<vector>
 #include<queue>
 using namespace std;
 
 class graph{
 public:
-    void addEdge(int a,int b,int w,int A[],int n){
-        A[a*n+b]=w;
-        A[b*n+a]=w;
+    void addEdge(int a,int b,int w,vector<vector<int>>& A,int n){
+        A[a][b]=w;
+        A[b][a]=w;
     }
-    void printGraph(int A[],int n){
+    void printGraph(vector<vector<int>>& A,int n){
         for(int i=1;i<n;i++){
             cout<<i<<"-> ";
             for(int j=0;j<n;j++){
-                if(A[i*n+j]!=0){
-                    cout<<j<<"("<<A[i*n+j]<<") ";
+                if(A[i][j]!=0){
+                    cout<<j<<"("<<A[i][j]<<") ";
                 }
             }
             cout<<endl;
         }
         cout<<endl;
     }
-    void BFS(int i,int A[],int n){
+    void BFS(int i,vector<vector<int>>& A,int n){
         queue<int> q;
         int B[n]={0};
         int u;
@@ -31,7 +32,7 @@ public:
             u = q.front();
             q.pop();
             for(int j=0;j<n;j++){
-                if(A[u*n+j]!=0 && B[j]==0){
+                if(A[u][j]!=0 && B[j]==0){
                     cout<<j<<" ";
                     B[j]=1;
                     q.push(j);
@@ -40,14 +41,14 @@ public:
         }
         cout<<endl;
     }//O(n^2);
-    void DFS(int i,int B[],int A[],int n){
+    void DFS(int i,int B[],vector<vector<int>>& A,int n){
         if(B[i]==1){
             return;
         }
         cout<<i<<" ";
         B[i]=1;
         for(int j=0;j<n;j++){
-            if(A[i*n+j]!=0){
+            if(A[i][j]!=0){
                 DFS(j,B,A,n);
             }
         }
@@ -56,7 +57,8 @@ public:
 
 int main(){
     int n=8;
-    int A[n*n]={0};
+    vector<int> a(n,0);
+    vector<vector<int>> A(n,a);
     graph g;
     g.addEdge(1,2,6,A,n);
     g.addEdge(1,3,3,A,n);
