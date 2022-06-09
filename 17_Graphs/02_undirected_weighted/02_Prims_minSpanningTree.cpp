@@ -21,25 +21,10 @@ public:
     }
 };
 
-int main(){
-    int n=7,mini=INT_MAX,u,v,x;
-    vector<vector<int>> A(n+1,vector<int>(n+1,INT_MAX));
-    vector<vector<int>> B(n-1,vector<int>(3,0));
+void prims(vector<vector<int>> &A,vector<vector<int>>& B,int n)
+{
+    int mini=INT_MAX,u,v,x;
     vector<int> near(n+1, INT_MAX);
-
-    graph g;
-    g.addEdge(1,2,25,A,n+1);
-    g.addEdge(1,6,5,A,n+1);
-    g.addEdge(2,3,12,A,n+1);
-    g.addEdge(2,7,10,A,n+1);
-    g.addEdge(3,4,8,A,n+1);
-    g.addEdge(4,5,16,A,n+1);
-    g.addEdge(4,7,14,A,n+1);
-    g.addEdge(5,6,20,A,n+1);
-    g.addEdge(5,7,18,A,n+1);
-    g.printGraph(A,n+1);
-    
-
     for(int i=1;i<n;i++){
         for(int j=i+1;j<=n;j++){
             if(A[i][j]<mini){
@@ -84,6 +69,29 @@ int main(){
             }
         }
     }
+}
+
+int main(){
+    int n=7;
+    vector<vector<int>> A(n+1,vector<int>(n+1,INT_MAX));
+    vector<vector<int>> B(n-1,vector<int>(3,0));
+    
+    graph g;
+    g.addEdge(1,2,25,A,n+1);
+    g.addEdge(1,6,5,A,n+1);
+    g.addEdge(2,3,12,A,n+1);
+    g.addEdge(2,7,10,A,n+1);
+    g.addEdge(3,4,8,A,n+1);
+    g.addEdge(4,5,16,A,n+1);
+    g.addEdge(4,7,14,A,n+1);
+    g.addEdge(5,6,20,A,n+1);
+    g.addEdge(5,7,18,A,n+1);
+    g.printGraph(A,n+1);
+
+
+    prims(A,B,n);
+
+    
     cout<<B[0][0];
     for(int i=0;i<n-1;i++){
         cout<<"->"<<B[i][1]<<"("<<B[i][2]<<")";
